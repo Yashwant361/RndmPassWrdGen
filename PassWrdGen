@@ -1,0 +1,54 @@
+package Learn_and_Build;
+
+import java.util.Random;
+
+public class PassWrdGen {
+    private int length;
+    private boolean useUpperCase;
+    private boolean useLowerCase;
+    private boolean useNumber;
+    private boolean useSymbol;
+
+    private final String uppercaseChars ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final String lowercaseChars ="abcdefghijklmnopqrstuvwxyz";
+    private final String  numberChars =  "123456789";
+    private final String symbolChars = "!@#$&";
+
+   private Random random = new Random(); // Random class
+
+    //constructors
+    public PassWrdGen(int length , boolean uppercaseChars, boolean useLowerCase , boolean useNumber , boolean useSymbol){
+        this.length = length;
+        this.useUpperCase = useUpperCase;
+        this.useLowerCase = useLowerCase;
+        this.useNumber = useNumber;
+        this.useSymbol = useSymbol;
+    }
+    
+
+    public String genetate() //to define a method for generating a random password based on the options specified by the user.
+        {
+        StringBuilder passwordBuilder = new StringBuilder(); // StringBuilder for building password
+
+            String chars = ""; //This block creates a String variable called chars---> to stores set(characters) that will be used to generates the random password
+
+            if (useUpperCase){
+                chars += uppercaseChars;
+            }
+            if (useLowerCase) {
+                chars += lowercaseChars;
+            }
+            if (useNumber) {
+                chars +=numberChars;
+            }
+            if (useSymbol){
+                chars +=symbolChars;
+            }
+
+            for (int i = 0 ; i < length ; i++){
+                int index = random.nextInt(chars.length());
+                passwordBuilder.append(chars.charAt(index));
+            }
+            return passwordBuilder.toString(); // return generates password
+        }
+}
